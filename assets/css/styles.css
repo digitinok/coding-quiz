@@ -32,6 +32,7 @@ button:hover {
 
 .choices button {
   display: block;
+  margin: 5px auto;
 }
 
 input[type="text"] {
