@@ -22,8 +22,6 @@ let submitButton = document.getElementById("submit");
 // Elements from questions div
 let questionTitle = document.getElementById("question-title");
 let questionChoices = document.getElementById("choices");
-// first question
-let questionNumber = 0;
 
 
 // start button event handler to start the quiz
@@ -46,44 +44,42 @@ startButton.addEventListener("click", function (event) {
     }, 1000);
 
     // Display the first question
-    displayQuestion (0)
+    displayQuestion (0);
     }   
 )
+
 
 // submitting score to high score list
 submitButton.addEventListener("click", function (event) {
     event.preventDefault;
-    console.log(initials.value)
 
     // get most recent submission
     let scores = JSON.parse(localStorage.getItem("scores"));
-    console.log(scores)
-    if (scores === null) {
-        scores = [{initials: initials.value.trim(), score: score}]
-    } else {
-        /*for (let i=0; i<scores.length; i++) {
-            if (scores[i].score < score) {
-                scores.splice(i, 0, {initials: initials.value.trim(),score: score});
-            }
 
-        }*/
-        scores.push({initials: initials.value.trim(),score: score})
+    try {
+        // appending new scores to high score list
+        scores.push({initials: initials.value.trim(),score: score});  
+    } 
+    catch {
+        // creating new high score list 
+        scores = [{initials: initials.value.trim(), score: score}];
     }
-    // set new submission
+    // set new scores variable in local storage
     localStorage.setItem("scores", JSON.stringify(scores));
 
-    window.location.href = "highscores.html"
+    // open highscore html file
+    window.location.href = "highscores.html";
 })
+
 
 function displayQuestion (questionNumber) {
     //display the question and answer choises
-
     questionTitle.textContent = questions[questionNumber].title;
     // Empty answer choices div
     questionChoices.innerHTML = ""
 
     for (let i = 0; i < questions[questionNumber].choices.length; i++) {
-
+        // create buttons with possible answers and add event handler to check answer
         let choiceButton = document.createElement("button")
         choiceButton.textContent = questions[questionNumber].choices[i];
         questionChoices.appendChild(choiceButton);
@@ -92,8 +88,7 @@ function displayQuestion (questionNumber) {
             checkAnswer (questionNumber, choiceButton.textContent)
         })
     }
-    //questionChoices.textContent = questions[questionNumber].choices;
-  
+    // display question screen 
     questionScreen.setAttribute("class", "start")
 
 }
@@ -122,19 +117,26 @@ function checkAnswer (questionNumber, givenAnswer) {
     }
 
     const myTimeout = setTimeout(function () {feedbackScreen.setAttribute("class", "feedback hide")}, 2000);
+    
     questionNumber++;
     if (questionNumber < questions.length) {
         displayQuestion (questionNumber)
     } else {
-        score += time;
+        // calculate final score
+        score += time; 
+        // stop the timer from running
         clearInterval(myTimer);
+        // update displayed timer as it may not have updated after the last question
+        timeEl.textContent = time;
         displayScore();
     }
 
 }
 
 function displayScore () {
+    // hide the question screen
     questionScreen.setAttribute("class", "hide");
-    endScreen.setAttribute("class", "start");
+    // display the final score and make the end screen visible
     finalScore.textContent = score;
+    endScreen.setAttribute("class", "start");
 }
