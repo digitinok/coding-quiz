@@ -1,6 +1,8 @@
 
+// time element
+let timeEl = document.getElementById("time");
+let time = 60; // 60 sec time for the quiz
 
-let time = document.getElementById("time");
 
 // getting div elements from the wrapper to target what to show
 let startScreen = document.getElementById("start-screen");
@@ -19,9 +21,25 @@ let questionNumber = 0;
 
 startButton.addEventListener("click", function (event) {
     event.preventDefault;
+    // hide start screen
+    startScreen.setAttribute("class", "hide");
+
+    // start timer
+    timeEl.textContent = time;
+    myTimer = setInterval(function () {
+        // count down timer every second and finish when time is 0
+        if (time <= 0) {
+            clearInterval(myTimer);
+            displayScore ();
+        } else {
+            time--; 
+        }
+        timeEl.textContent = time;
+    }, 1000);
+
     // Display the first question
     displayQuestion (0)
-}
+}   
 )
 
 function displayQuestion (questionNumber) {
@@ -42,24 +60,46 @@ function displayQuestion (questionNumber) {
         })
     }
     //questionChoices.textContent = questions[questionNumber].choices;
-    startScreen.setAttribute("class", "hide");
+  
     questionScreen.setAttribute("class", "start")
+
 }
 
 function checkAnswer (questionNumber, givenAnswer) {
+    // visible feedback
+    feedbackScreen.setAttribute("class", "feedback")
 
     if (givenAnswer === questions[questionNumber].answer) {
-        console.log("right")
-        feedbackScreen.setAttribute("class", "feedback")
         feedbackScreen.textContent = "Well Done!";
         let audioR = new Audio('assets/sfx/correct.wav');    
         audioR.play()
     } else {
-        console.log("wrong")
-        feedbackScreen.setAttribute("class", "feedback")
         feedbackScreen.textContent = "Think Again!";
         let audioW = new Audio('assets/sfx/incorrect.wav');    
         audioW.play()
+        // decreasing timer
+        if (time > 10) {
+            time -= 10;
+        } else {
+            time = 0;
+        }
+
+
     }
+
+    const myTimeout = setTimeout(function () {feedbackScreen.setAttribute("class", "feedback hide")}, 2000);
+    questionNumber++;
+    if (questionNumber < questions.length) {
+        displayQuestion (questionNumber)
+    } else {
+        clearInterval(myTimer);
+        displayScore();
+    }
+
 }
 
+function displayScore () {
+    questionScreen.setAttribute("class", "hide");
+    endScreen.setAttribute("class", "start");
+
+}

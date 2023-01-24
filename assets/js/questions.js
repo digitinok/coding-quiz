@@ -9,5 +9,18 @@ let questions = [
     choices: ["a","b","c","d"],
     answer: "d",
     },
+    {title: "question3",
+    choices: ["a","b","c","d"],
+    answer: "a",
+    },
+    {title: "question4",
+    choices: ["a","b","c","d"],
+    answer: "c",
+    },
+    {title: "question5",
+    choices: ["a","b","c","d"],
+    answer: "d",
+    },
+
 ]
 console.log(questions)
