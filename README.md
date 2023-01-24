@@ -1,6 +1,6 @@
 # Coding Quiz
 
-A time coding quiz with multiple choice questions running in the browser
+A timed coding quiz with multiple choice questions running in the browser
 
 ## Description
 
@@ -20,17 +20,21 @@ This app will run in the browser, and will feature dynamically updated HTML and 
 
 ## Usage
 
-ToDo
+The quiz runs in the browser and starts the questions with multiple choice answers after clicking the start button.  The quiz finishes if either all the questions are answered with a time bonus or when the timer runs out.  But be aware, you'll loose 10 seconds for every wrong answer.
 
-This is how the deployed page looks like:
+This is how the deployed pages looks like:
 
-![alt screenshot of deployed page](assets/images/screenshot.png)
+![alt screenshot of deployed page](assets/images/question_screenshot.png)
 
-<p style="text-align: center;">Screenshot of deployed Page</p>
+<p style="text-align: center;">Screenshot of deployed Questions Page</p>
+
+![alt screenshot of deployed page](assets/images/highscore_screenshot.png)
+
+<p style="text-align: center;">Screenshot of deployed Highscore Page</p>
 
 ## Future Improvements
 
-ToDo
+Furture improvements will include randomization of the questions and answers, so that the user doesn't learn the position of questions and answers.
 
 ## Credits
 
