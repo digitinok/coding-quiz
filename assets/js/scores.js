@@ -9,7 +9,9 @@ function renderHighScores () {
     highscores.innerHTML = "";
     let scores = JSON.parse(localStorage.getItem("scores"));
     if (scores === null) {return}
-
+    // descending order of scores
+    scores.sort((a, b) => b.score - a.score);
+    console.log(scores)
     for (let i=0; i<scores.length; i++) {
         let li = document.createElement("li");
         li.textContent = `\t ${scores[i].initials} \t ${scores[i].score}`;

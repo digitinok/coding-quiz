@@ -61,6 +61,12 @@ submitButton.addEventListener("click", function (event) {
     if (scores === null) {
         scores = [{initials: initials.value.trim(), score: score}]
     } else {
+        /*for (let i=0; i<scores.length; i++) {
+            if (scores[i].score < score) {
+                scores.splice(i, 0, {initials: initials.value.trim(),score: score});
+            }
+
+        }*/
         scores.push({initials: initials.value.trim(),score: score})
     }
     // set new submission
