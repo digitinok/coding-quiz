@@ -21,6 +21,18 @@ let questions = [
     choices: ["a","b","c","d"],
     answer: "d",
     },
+    {title: "question6",
+    choices: ["a","b","c","d"],
+    answer: "b",
+    },
+    {title: "question7",
+    choices: ["a","b","c","d"],
+    answer: "a",
+    },
+    {title: "question8",
+    choices: ["a","b","c","d"],
+    answer: "a",
+    },
 
 ]
 console.log(questions)
