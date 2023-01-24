@@ -1,9 +1,9 @@
 //array of questions
 let questions = [
 
-    {title: "question1",
-    choices: ["a","b","c","d"],
-    answer: "b",
+    {title: "Inside which HTML element do we put the JavaScript?",
+    choices: ["<javascript>","<script>","<js>","<scripting>"],
+    answer: "<script>",
     },
     {title: "question2",
     choices: ["a","b","c","d"],
